@@ -1960,10 +1960,8 @@ def guardarAcorazado2J2(x,y,orientacion,co,fi):
         nuevoJuego["BarcosJ2"]["Acorazado2J2"]["x3"]=x
 
     nuevoJuego["BarcosJ2"]["Acorazado2J2"]["vida"]=True
-    nuevoJuego["BarcosJ2"]["Acorazado2J2"]["orientacion"]=orientacion
-    ubicarDestructor1J2(co,fi)  
+    nuevoJuego["BarcosJ2"]["Acorazado2J2"]["orientacion"]=orientacion  
     return True
-
 
 print(nuevoJuego.items())
 menu.mainloop()
