@@ -212,7 +212,6 @@ def datosPartida():
                         ventana.destroy())
     botonEmpezar.place(x=310, y=210)
 
-
 def mensaje():
     messagebox.showinfo("Battleship", "Ubique los barcos en el tablero.")
     return True 
@@ -225,3 +224,12 @@ def generarMatriz(x,y):
     nuevoJuego["Matriz"]["matrizJ2"]=[[0 for c in range(x//2)] for f in range(y)]
     return True
 
+def cambiarCursor(event):
+    menu.config(cursor="hand2")
+
+def restaurarCursor(event):
+    menu.config(cursor="")
+
+menu.bind("<Enter>", cambiarCursor)
+
+menu.bind("<Leave>", restaurarCursor)
