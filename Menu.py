@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import messagebox
 
 nuevoJuego = {
         "Matriz": {"Columnas": None,"Filas": None, "matrizJ1": [], "matrizJ2": []},
@@ -99,5 +100,19 @@ def datosPartida():
     seleccionFilaE.place(x=270, y=180)
     nuevoJuego["Matriz"]["Filas"]=seleccionFilaE.get()
 
-    botonEmpezar=Button(ventana, text="Empezar",command="Funcion")
+    botonEmpezar=Button(ventana, text="Empezar",command=lambda: mensaje() and generarMatriz( seleccionColumnaE.get(),seleccionFilaE.get()) and
+                        ventana.destroy())
     botonEmpezar.place(x=310, y=210)
+
+
+def mensaje():
+    messagebox.showinfo("Battleship", "Ubique los barcos en el tablero.")
+    return True 
+
+def generarMatriz(x,y):
+    x=int(x)
+    y=int(y)
+    global nuevoJuego
+    nuevoJuego["Matriz"]["matrizJ1"]=[[0 for c in range(x//2)] for f in range(y)]
+    nuevoJuego["Matriz"]["matrizJ2"]=[[0 for c in range(x//2)] for f in range(y)]
+    return True
