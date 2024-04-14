@@ -1,5 +1,7 @@
 from tkinter import *
 from tkinter import messagebox
+from tkinter import ttk
+import tkinter.font as tkFont
 
 nuevoJuego = {
         "Matriz": {"Columnas": None,"Filas": None, "matrizJ1": [], "matrizJ2": []},
@@ -50,6 +52,37 @@ nuevoJuego = {
             "Acorazado2J2": {"vida": True, "x1": None, "y1": None,"x2": None, "y2": None, "x3": None, "y3": None, "orientacion": None},
             }
     }
+
+menu = Tk()
+style = ttk.Style() 
+style.configure('C.TButton', font=("Bauhaus 93", 18))
+style.configure('C.TButton', relief="ridge")
+style.configure('C.TButton', width=3)
+style.configure('C.TButton', bd=1)
+fontStyle = tkFont.Font(family="Lucida Grande", size=40)
+matriz=[]
+
+menu.attributes('-fullscreen', True)
+menu.configure(bg="Yellow")
+menu.title("Battleship")
+
+titulo= Label(menu, text="Battleship", font=fontStyle)
+titulo.place(x=660,y=1)
+
+boton1=ttk.Button(menu, text= "Crear partida", command="funcion", style='C.TButton')
+boton1.place(x=80 , y=220, width=200, height=130)
+
+boton2=ttk.Button(menu, text= "Cargar partida", command="funcion", style='C.TButton')
+boton2.place(x=80 , y=430, width=200, height=130)
+
+boton2=ttk.Button(menu, text= "Borrar partidas", command="funcion", style='C.TButton')
+boton2.place(x=80 , y=640, width=200, height=130)
+
+boton4=ttk.Button(menu, text="Salir", command=menu.destroy, style='C.TButton')
+boton4.place(x=1330 , y=30, width=120, height=80)
+
+punto= Label(menu, text="#")
+punto.place(x=1525 , y=850)
 
 def datosPartida():
     global nuevoJuego
@@ -116,3 +149,4 @@ def generarMatriz(x,y):
     nuevoJuego["Matriz"]["matrizJ1"]=[[0 for c in range(x//2)] for f in range(y)]
     nuevoJuego["Matriz"]["matrizJ2"]=[[0 for c in range(x//2)] for f in range(y)]
     return True
+
