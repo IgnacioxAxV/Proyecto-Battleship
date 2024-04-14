@@ -62,6 +62,8 @@ style.configure('C.TButton', width=3)
 style.configure('C.TButton', bd=1)
 fontStyle = tkFont.Font(family="Lucida Grande", size=40)
 matriz=[]
+resultadoX=0
+resultadoY=0
 
 def datosPartida():
     global nuevoJuego
@@ -239,6 +241,13 @@ menu.bind("<Enter>", cambiarCursor)
 
 menu.bind("<Leave>", restaurarCursor)
 
+def accion(x,y):
+    print (f"x={x},y={y}")
+    global resultadoX
+    global resultadoY
+    resultadoX=x
+    resultadoY=y  
+
 def ubicarDestructor1J1(x,y):
     x=int(x)
     y=int(y)
@@ -252,7 +261,7 @@ def ubicarDestructor1J1(x,y):
 
     orientacion= IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= "funcion")
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor1J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -267,7 +276,7 @@ def ubicarDestructor1J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[Button(tablero,bg="blue", command="funcion")
+    matriz=[[Button(tablero,bg="blue", command= accion(x,y)) 
             for c in range(x//2)] for f in range(y)]
     
     posicionXmatriz=10
@@ -294,6 +303,12 @@ def ubicarDestructor1J1(x,y):
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35 
 
+def guardarDestructor1J1(x,y,orientacion,co,fi):
+    nuevoJuego["BarcosJ1"]["Destructor1J1"]["x1"]=x
+    nuevoJuego["BarcosJ1"]["Destructor1J1"]["y1"]=y
+    nuevoJuego["BarcosJ1"]["Destructor1J1"]["vida"]=True
+    nuevoJuego["BarcosJ1"]["Destructor1J1"]["orientacion"]=orientacion
+    return True
 
 print(nuevoJuego.items())
 menu.mainloop()
