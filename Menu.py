@@ -152,13 +152,13 @@ menu.title("Battleship")
 titulo= Label(menu, text="Battleship", font=fontStyle)
 titulo.place(x=660,y=1)
 
-boton1=ttk.Button(menu, text= "Crear partida", command=datosPartida(), style='C.TButton')
+boton1=ttk.Button(menu, text= "Crear partida", command=datosPartida, style='C.TButton')
 boton1.place(x=80 , y=220, width=200, height=130)
 
-boton2=ttk.Button(menu, text= "Cargar partida", command=cargarPartidas(), style='C.TButton')
+boton2=ttk.Button(menu, text= "Cargar partida", command= cargarPartidas, style='C.TButton')
 boton2.place(x=80 , y=430, width=200, height=130)
 
-boton2=ttk.Button(menu, text= "Borrar partidas", command=borrarPartidas(), style='C.TButton')
+boton2=ttk.Button(menu, text= "Borrar partidas", command=borrarPartidas, style='C.TButton')
 boton2.place(x=80 , y=640, width=200, height=130)
 
 boton4=ttk.Button(menu, text="Salir", command=menu.destroy, style='C.TButton')
@@ -166,59 +166,6 @@ boton4.place(x=1330 , y=30, width=120, height=80)
 
 punto= Label(menu, text="#")
 punto.place(x=1525 , y=850)
-
-def datosPartida():
-    global nuevoJuego
-
-    ventana=Toplevel()
-    ventana.title("Datos de partida")
-    ventana.geometry("410x250+380+280")
-
-    partidaLabel= Label(ventana, text="Inserte el nombre de la partida:")
-    partidaLabel.place(x=1,y=1)
-    nombrePartidaE= Entry(ventana)
-    nombrePartidaE.place(x=270,y=1)
-    nuevoJuego["NombrePartida"]=nombrePartidaE.get()
-
-    jugador1Label= Label(ventana, text="Inserte el nombre del primer jugador:")
-    jugador1Label.place(x=1,y=30)
-    nombreJugador1E= Entry(ventana)
-    nombreJugador1E.place(x=270,y=30)
-    nuevoJuego["Jugador 1"]["Nombre"]=nombreJugador1E.get()
-
-    nickname1Label= Label(ventana, text="Inserte el nombre del primer jugador:")
-    nickname1Label.place(x=1,y=60)
-    nickName1E= Entry(ventana)
-    nickName1E.place(x=270,y=60)
-    nuevoJuego["Jugador 1"]["Nickname"]=nickName1E.get()    
-
-    jugador2Label= Label(ventana, text="Inserte el nombre del segundo jugador:")
-    jugador2Label.place(x=1,y=90)
-    nombreJugador2E= Entry(ventana)
-    nombreJugador2E.place(x=270,y=90)
-    nuevoJuego["Jugador 2"]["Nombre"]=nombreJugador2E.get() 
-
-    nickname2Label= Label(ventana, text="Inserte el nombre del segundo jugador:")
-    nickname2Label.place(x=1,y=120)
-    nickName2E= Entry(ventana)
-    nickName2E.place(x=270,y=120)
-    nuevoJuego["Jugador 2"]["Nickname"]=nickName2E.get()    
-
-    columnaLabel= Label(ventana, text="Columnas:")
-    columnaLabel.place(x=1,y=150)
-    seleccionColumnaE= Spinbox(ventana, from_=20, to=40, increment=2)
-    seleccionColumnaE.place(x=270,y=150)
-    nuevoJuego["Matriz"]["Columnas"]=seleccionColumnaE.get()
-
-    filaLabel= Label(ventana, text="Fila:")
-    filaLabel.place(x=1,y=180)
-    seleccionFilaE= Spinbox(ventana, from_=10, to=40)
-    seleccionFilaE.place(x=270, y=180)
-    nuevoJuego["Matriz"]["Filas"]=seleccionFilaE.get()
-
-    botonEmpezar=Button(ventana, text="Empezar",command=lambda: mensaje() and generarMatriz( seleccionColumnaE.get(),seleccionFilaE.get()) and
-                        ventana.destroy())
-    botonEmpezar.place(x=310, y=210)
 
 def mensaje():
     messagebox.showinfo("Battleship", "Ubique los barcos en el tablero.")
@@ -310,6 +257,7 @@ def guardarDestructor1J1(x,y,orientacion,co,fi):
     nuevoJuego["BarcosJ1"]["Destructor1J1"]["vida"]=True
     nuevoJuego["BarcosJ1"]["Destructor1J1"]["orientacion"]=orientacion
     ubicarDestructor2J1(co,fi)
+    print(nuevoJuego.items())
     return True
 
 def ubicarDestructor2J1(x,y):
@@ -374,6 +322,7 @@ def guardarDestructor2J1(x,y,orientacion,co,fi):
     nuevoJuego["BarcosJ1"]["Destructor2J1"]["vida"]=True
     nuevoJuego["BarcosJ1"]["Destructor2J1"]["orientacion"]=orientacion
     ubicarDestructor3J1(co,fi)
+    print(nuevoJuego.items())   
     return True
 
 def ubicarDestructor3J1(x,y):
@@ -646,7 +595,7 @@ def ubicarCrucero1J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= guardarCrucero1J1(x,y,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarCrucero1J1(x,y,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -970,7 +919,7 @@ def ubicarAcorazado1J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= guardarAcorazado1J1(x,y,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarAcorazado1J1(x,y,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1169,29 +1118,32 @@ def ubicarDestructor1J2(x,y):
     matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f: accion(x,y)) 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatriz=10
+    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=10
+    posicionYmatrizCopia=200
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
     posicionYmatriz=200
     for fila_botones in matriz:
-        posicionXmatriz=10
+        posicionXmatriz=posicionXmatrizCopia+10
         for btn in fila_botones:
             btn.place(x=posicionXmatriz,y=posicionYmatriz)
             btn.configure(height=2, width=3)
             posicionXmatriz+=32
         posicionYmatriz+=35
-    
-    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
-            btn.configure(height=2, width=3)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=35 
+    return True
 
 def guardarDestructor1J2(x,y,orientacion,co,fi):
     nuevoJuego["BarcosJ2"]["Destructor1J2"]["x1"]=x
@@ -1229,33 +1181,32 @@ def ubicarDestructor2J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
-    #return True
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
+    return True
 
 def guardarDestructor2J2(x,y,orientacion,co,fi):
     nuevoJuego["BarcosJ2"]["Destructor2J2"]["x1"]=x
@@ -1293,32 +1244,31 @@ def ubicarDestructor3J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y) ) 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
     return True
 
 def guardarDestructor3J2(x,y,orientacion,co,fi):
@@ -1357,33 +1307,32 @@ def ubicarDestructor4J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
-    #return True
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
+    return True
 
 def guardarDestructor4J2(x,y,orientacion):
     nuevoJuego["BarcosJ2"]["Destructor4J2"]["x1"]=x
@@ -1421,32 +1370,31 @@ def ubicarDestructor5J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
     return True
 
 def guardarDestructor5J2(x,y,orientacion,co,fi):
@@ -1485,32 +1433,31 @@ def ubicarDestructor6J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y))
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
     return True
 
 def guardarDestructor6J2(x,y,orientacion,co,fi):
@@ -1534,7 +1481,7 @@ def ubicarCrucero1J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= guardarCrucero1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarCrucero1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1549,32 +1496,31 @@ def ubicarCrucero1J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y) )
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
     return True
 
 def guardarCrucero1J2(x,y,horientacion,co,fi):
@@ -1630,32 +1576,31 @@ def ubicarCrucero2J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y))   
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
     return True
 
 def guardarCrucero2J2(x,y,orientacion,co,fi):
@@ -1711,32 +1656,31 @@ def ubicarCrucero3J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
     return True
 
 def guardarCrucero3J2(x,y,orientacion,co,fi):
@@ -1792,32 +1736,31 @@ def ubicarCrucero4J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f :accion(x,y))
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
     return True
 
 def guardarCrucero4J2(x,y,orientacion,co,fi):
@@ -1858,7 +1801,7 @@ def ubicarAcorazado1J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= guardarAcorazado1J2(x,y,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarAcorazado1J2(x,y,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1873,32 +1816,31 @@ def ubicarAcorazado1J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
     return True
 
 def guardarAcorazado1J2(x,y,orientacion,co,fi):
@@ -1962,32 +1904,31 @@ def ubicarAcorazado2J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones in matriz:
-        posicionXmatriz=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatriz,y=posicionYmatriz)
-            btn.configure(height=2, width=3)
-            posicionXmatriz+=32
-        posicionYmatriz+=35
-    
     matrizReferencia=[[tk.Button(tablero,bg="yellow") 
             for c in range(x//2)] for f in range(y)]
     
-    posicionXmatrizCopia=posicionXmatriz+10
+    posicionXmatrizCopia=10
     posicionYmatrizCopia=200
-
     for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
+        posicionXmatrizCopia=10
         for btn in fila_botones:
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
             btn.configure(height=2, width=3)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=35
+    
+    matriz=[[tk.Button(tablero,bg="red", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
     return True
 
 def guardarAcorazado2J2(x,y,orientacion,co,fi):
