@@ -1075,7 +1075,475 @@ def guardarAcorazado2J1(x,y,orientacion,co,fi):
         nuevoJuego["BarcosJ1"]["Acorazado2J1"]["x3"]=x
 
     nuevoJuego["BarcosJ1"]["Acorazado2J1"]["vida"]=True
-    nuevoJuego["BarcosJ1"]["Acorazado2J1"]["orientacion"]=orientacion  
+    nuevoJuego["BarcosJ1"]["Acorazado2J1"]["orientacion"]=orientacion
+    ubicarDestructor1J2(co,fi)  
+    return True
+
+
+
+
+def ubicarDestructor1J2(x,y):
+    x=int(x)
+    y=int(y)
+    global matriz
+    tablero=tk.Toplevel()
+    tablero.title("Tablero")
+    tablero.attributes("-fullscreen", True)
+
+    tableroLabel= Label(tablero, text="Inserte la ubicacion del barco:")
+    tableroLabel.place(x=1,y=10)
+
+    orientacion= tk.IntVar()
+
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion.place(x=400, y=40)
+
+    orientacionLabel= Label(tablero, text="Orientacion del barco:")
+    orientacionLabel.place(x=500,y=40)
+
+    orientacionIzquierda=ttk.Radiobutton(tablero, text="Izquierda", value= 1, variable=orientacion)
+    orientacionIzquierda.place(x=600, y=60)
+    orientacionDerecha=ttk.Radiobutton(tablero, text="Derecha", value=2, variable=orientacion)
+    orientacionDerecha.place(x=700, y=60)
+    orientacioAbajo=ttk.Radiobutton(tablero, text="Abajo", value=3, variable=orientacion)
+    orientacioAbajo.place(x=800, y=60)
+    orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
+    orientacionArriba.place(x=900, y=60)
+
+    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f: accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatriz=10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
+    
+    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=posicionXmatriz+10
+    posicionYmatrizCopia=200
+
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=posicionXmatriz+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35 
+
+def guardarDestructor1J2(x,y,orientacion,co,fi):
+    nuevoJuego["BarcosJ2"]["Destructor1J2"]["x1"]=x
+    nuevoJuego["BarcosJ2"]["Destructor1J2"]["y1"]=y
+    nuevoJuego["BarcosJ2"]["Destructor1J2"]["vida"]=True
+    nuevoJuego["BarcosJ2"]["Destructor1J2"]["orientacion"]=orientacion
+    ubicarDestructor2J2(co,fi)
+    return True
+
+def ubicarDestructor2J2(x,y):
+    x=int(x)
+    y=int(y)
+    global matriz
+    tablero=tk.Toplevel()
+    tablero.title("Tablero")
+    tablero.attributes("-fullscreen", True)
+
+    tableroLabel= Label(tablero, text="Inserte la ubicacion del barco:")
+    tableroLabel.place(x=1,y=10)
+
+    orientacion= tk.IntVar()
+
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor2J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion.place(x=400, y=40)
+
+    orientacionLabel= Label(tablero, text="Orientacion del barco:")
+    orientacionLabel.place(x=500,y=40)
+
+    orientacionIzquierda=ttk.Radiobutton(tablero, text="Izquierda", value= 1, variable=orientacion)
+    orientacionIzquierda.place(x=600, y=60)
+    orientacionDerecha=ttk.Radiobutton(tablero, text="Derecha", value=2, variable=orientacion)
+    orientacionDerecha.place(x=700, y=60)
+    orientacioAbajo=ttk.Radiobutton(tablero, text="Abajo", value=3, variable=orientacion)
+    orientacioAbajo.place(x=800, y=60)
+    orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
+    orientacionArriba.place(x=900, y=60)
+
+    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatriz=10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
+    
+    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=posicionXmatriz+10
+    posicionYmatrizCopia=200
+
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=posicionXmatriz+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35
+    #return True
+
+def guardarDestructor2J2(x,y,orientacion,co,fi):
+    nuevoJuego["BarcosJ2"]["Destructor2J2"]["x1"]=x
+    nuevoJuego["BarcosJ2"]["Destructor2J2"]["y1"]=y
+    nuevoJuego["BarcosJ2"]["Destructor2J2"]["vida"]=True
+    nuevoJuego["BarcosJ2"]["Destructor2J2"]["orientacion"]=orientacion
+    ubicarDestructor3J2(co,fi)
+    return True
+
+def ubicarDestructor3J2(x,y):
+    x=int(x)
+    y=int(y)
+    global matriz
+    tablero=tk.Toplevel()
+    tablero.title("Tablero")
+    tablero.attributes("-fullscreen", True)
+
+    tableroLabel= Label(tablero, text="Inserte la ubicacion del barco:")
+    tableroLabel.place(x=1,y=10)
+
+    orientacion= tk.IntVar()
+
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarDestructor3J2(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
+    botonGuardarPosicion.place(x=400, y=40)
+
+    orientacionLabel= Label(tablero, text="Orientacion del barco:")
+    orientacionLabel.place(x=500,y=40)
+
+    orientacionIzquierda=ttk.Radiobutton(tablero, text="Izquierda", value= 1, variable=orientacion)
+    orientacionIzquierda.place(x=600, y=60)
+    orientacionDerecha=ttk.Radiobutton(tablero, text="Derecha", value=2, variable=orientacion)
+    orientacionDerecha.place(x=700, y=60)
+    orientacioAbajo=ttk.Radiobutton(tablero, text="Abajo", value=3, variable=orientacion)
+    orientacioAbajo.place(x=800, y=60)
+    orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
+    orientacionArriba.place(x=900, y=60)
+
+    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y) ) 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatriz=10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
+    
+    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=posicionXmatriz+10
+    posicionYmatrizCopia=200
+
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=posicionXmatriz+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35
+    return True
+
+def guardarDestructor3J2(x,y,orientacion,co,fi):
+    nuevoJuego["BarcosJ2"]["Destructor3J2"]["x1"]=x
+    nuevoJuego["BarcosJ2"]["Destructor3J2"]["y1"]=y
+    nuevoJuego["BarcosJ2"]["Destructor3J2"]["vida"]=True
+    nuevoJuego["BarcosJ2"]["Destructor3J2"]["orientacion"]=orientacion
+    ubicarDestructor4J2(co,fi)
+    return True
+
+def ubicarDestructor4J2(x,y):
+    x=int(x)
+    y=int(y)
+    global matriz
+    tablero=tk.Toplevel()
+    tablero.title("Tablero")
+    tablero.attributes("-fullscreen", True)
+
+    tableroLabel= Label(tablero, text="Inserte la ubicacion del barco:")
+    tableroLabel.place(x=1,y=10)
+
+    orientacion= tk.IntVar()
+
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor4J2(x,y,orientacion.get ()) and tablero.destroy())
+    botonGuardarPosicion.place(x=400, y=40)
+
+    orientacionLabel= Label(tablero, text="Orientacion del barco:")
+    orientacionLabel.place(x=500,y=40)
+
+    orientacionIzquierda=ttk.Radiobutton(tablero, text="Izquierda", value= 1, variable=orientacion)
+    orientacionIzquierda.place(x=600, y=60)
+    orientacionDerecha=ttk.Radiobutton(tablero, text="Derecha", value=2, variable=orientacion)
+    orientacionDerecha.place(x=700, y=60)
+    orientacioAbajo=ttk.Radiobutton(tablero, text="Abajo", value=3, variable=orientacion)
+    orientacioAbajo.place(x=800, y=60)
+    orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
+    orientacionArriba.place(x=900, y=60)
+
+    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatriz=10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
+    
+    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=posicionXmatriz+10
+    posicionYmatrizCopia=200
+
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=posicionXmatriz+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35
+    #return True
+
+def guardarDestructor4J2(x,y,orientacion):
+    nuevoJuego["BarcosJ2"]["Destructor4J2"]["x1"]=x
+    nuevoJuego["BarcosJ2"]["Destructor4J2"]["y1"]=y
+    nuevoJuego["BarcosJ2"]["Destructor4J2"]["vida"]=True
+    nuevoJuego["BarcosJ2"]["Destructor4J2"]["orientacion"]=orientacion
+    ubicarDestructor5J2(x,y)
+    return True
+
+def ubicarDestructor5J2(x,y):
+    x=int(x)
+    y=int(y)
+    global matriz
+    tablero=tk.Toplevel()
+    tablero.title("Tablero")
+    tablero.attributes("-fullscreen", True)
+
+    tableroLabel= Label(tablero, text="Inserte la ubicacion del barco:")
+    tableroLabel.place(x=1,y=10)
+
+    orientacion= tk.IntVar()
+
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarDestructor5J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion.place(x=400, y=40)
+
+    orientacionLabel= Label(tablero, text="Orientacion del barco:")
+    orientacionLabel.place(x=500,y=40)    
+
+    orientacionIzquierda=ttk.Radiobutton(tablero, text="Izquierda", value= 1, variable=orientacion)
+    orientacionIzquierda.place(x=600, y=60)
+    orientacionDerecha=ttk.Radiobutton(tablero, text="Derecha", value=2, variable=orientacion)
+    orientacionDerecha.place(x=700, y=60)
+    orientacioAbajo=ttk.Radiobutton(tablero, text="Abajo", value=3, variable=orientacion)
+    orientacioAbajo.place(x=800, y=60)
+    orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
+    orientacionArriba.place(x=900, y=60)
+
+    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatriz=10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
+    
+    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=posicionXmatriz+10
+    posicionYmatrizCopia=200
+
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=posicionXmatriz+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35
+    return True
+
+def guardarDestructor5J2(x,y,orientacion,co,fi):
+    nuevoJuego["BarcosJ2"]["Destructor5J2"]["x1"]=x
+    nuevoJuego["BarcosJ2"]["Destructor5J2"]["y1"]=y
+    nuevoJuego["BarcosJ2"]["Destructor5J2"]["vida"]=True
+    nuevoJuego["BarcosJ2"]["Destructor5J2"]["orientacion"]=orientacion
+    ubicarDestructor6J2(co,fi)
+    return True
+
+def ubicarDestructor6J2(x,y):
+    x=int(x)
+    y=int(y)
+    global matriz
+    tablero=tk.Toplevel()
+    tablero.title("Tablero")
+    tablero.attributes("-fullscreen", True)
+
+    tableroLabel= Label(tablero, text="Inserte la ubicacion del barco:")
+    tableroLabel.place(x=1,y=10)
+
+    orientacion= tk.IntVar()
+
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor6J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion.place(x=400, y=40)
+
+    orientacionLabel= Label(tablero, text="Orientacion del barco:")
+    orientacionLabel.place(x=500,y=40)
+
+    orientacionIzquierda=ttk.Radiobutton(tablero, text="Izquierda", value= 1, variable=orientacion)
+    orientacionIzquierda.place(x=600, y=60)
+    orientacionDerecha=ttk.Radiobutton(tablero, text="Derecha", value=2, variable=orientacion)
+    orientacionDerecha.place(x=700, y=60)
+    orientacioAbajo=ttk.Radiobutton(tablero, text="Abajo", value=3, variable=orientacion)
+    orientacioAbajo.place(x=800, y=60)
+    orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
+    orientacionArriba.place(x=900, y=60)
+
+    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y))
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatriz=10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
+    
+    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=posicionXmatriz+10
+    posicionYmatrizCopia=200
+
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=posicionXmatriz+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35
+    return True
+
+def guardarDestructor6J2(x,y,orientacion,co,fi):
+    nuevoJuego["BarcosJ2"]["Destructor6J2"]["x1"]=x
+    nuevoJuego["BarcosJ2"]["Destructor6J2"]["y1"]=y
+    nuevoJuego["BarcosJ2"]["Destructor6J2"]["vida"]=True
+    nuevoJuego["BarcosJ2"]["Destructor6J2"]["orientacion"]=orientacion
+    ubicarCrucero1J2(co,fi)
+    return True
+
+def ubicarCrucero1J2(x,y):
+    x=int(x)
+    y=int(y)
+    global matriz
+    tablero=tk.Toplevel()
+    tablero.title("Tablero")
+    tablero.attributes("-fullscreen", True)
+
+    tableroLabel= Label(tablero, text="Inserte la ubicacion del barco:")
+    tableroLabel.place(x=1,y=10)
+
+    orientacion= tk.IntVar()
+
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= guardarCrucero1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion.place(x=400, y=40)
+
+    orientacionLabel= Label(tablero, text="Orientacion del barco:")
+    orientacionLabel.place(x=500,y=40) 
+
+    orientacionIzquierda=ttk.Radiobutton(tablero, text="Izquierda", value= 1, variable=orientacion)
+    orientacionIzquierda.place(x=600, y=60)
+    orientacionDerecha=ttk.Radiobutton(tablero, text="Derecha", value=2, variable=orientacion)
+    orientacionDerecha.place(x=700, y=60)
+    orientacioAbajo=ttk.Radiobutton(tablero, text="Abajo", value=3, variable=orientacion)
+    orientacioAbajo.place(x=800, y=60)
+    orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
+    orientacionArriba.place(x=900, y=60)
+
+    matriz=[[tk.Button(tablero,bg="blue", command=lambda x=c,y=f:accion(x,y) )
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatriz=10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
+    
+    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=posicionXmatriz+10
+    posicionYmatrizCopia=200
+
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=posicionXmatriz+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35
+    return True
+
+def guardarCrucero1J2(x,y,horientacion,co,fi):
+    nuevoJuego["BarcosJ2"]["Crucero1J2"]["x1"]=x
+    nuevoJuego["BarcosJ2"]["Crucero1J2"]["y1"]=y
+
+    if horientacion==1:
+        nuevoJuego["BarcosJ2"]["Crucero1J2"]["x2"]=x-1
+        nuevoJuego["BarcosJ2"]["Crucero1J2"]["y2"]=y
+
+    elif horientacion==2:
+        nuevoJuego["BarcosJ2"]["Crucero1J2"]["x2"]=x+1
+        nuevoJuego["BarcosJ2"]["Crucero1J2"]["y2"]=y
+
+    elif horientacion==3:
+        nuevoJuego["BarcosJ2"]["Crucero1J2"]["y2"]=y+1
+        nuevoJuego["BarcosJ2"]["Crucero1J2"]["x2"]=x
+
+    elif horientacion==4:
+        nuevoJuego["BarcosJ2"]["Crucero1J2"]["y2"]=y-1
+        nuevoJuego["BarcosJ2"]["Crucero1J2"]["x2"]=x
+
+    nuevoJuego["BarcosJ2"]["Crucero1J2"]["vida"]=True
+    nuevoJuego["BarcosJ2"]["Crucero1J2"]["horientacion"]=horientacion
+    ubicarCrucero2J2(co,fi) 
     return True
 
 print(nuevoJuego.items())
