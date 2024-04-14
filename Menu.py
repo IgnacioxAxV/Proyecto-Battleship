@@ -1,4 +1,5 @@
 from tkinter import *
+import tkinter as tk
 from tkinter import messagebox
 from tkinter import ttk
 import tkinter.font as tkFont
@@ -252,14 +253,14 @@ def ubicarDestructor1J1(x,y):
     x=int(x)
     y=int(y)
     global matriz
-    tablero=Toplevel()
+    tablero=tk.Toplevel()
     tablero.title("Tablero")
     tablero.attributes("-fullscreen", True)
 
     tableroLabel= Label(tablero, text="Inserte la ubicacion del barco:")
     tableroLabel.place(x=1,y=10)
 
-    orientacion= IntVar()
+    orientacion= tk.IntVar()
 
     botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor1J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
@@ -367,7 +368,7 @@ def ubicarDestructor2J1(x,y):
         posicionYmatrizCopia+=35
     #return True
 
-def guardarDestructor2J1(x,y,orientaciubicarDestructor2J1(co,fi)on,co,fi):
+def guardarDestructor2J1(x,y,orientacion,co,fi):
     nuevoJuego["BarcosJ1"]["Destructor2J1"]["x1"]=x
     nuevoJuego["BarcosJ1"]["Destructor2J1"]["y1"]=y
     nuevoJuego["BarcosJ1"]["Destructor2J1"]["vida"]=True
@@ -629,7 +630,6 @@ def guardarDestructor6J1(x,y,orientacion,co,fi):
     nuevoJuego["BarcosJ1"]["Destructor6J1"]["y1"]=y
     nuevoJuego["BarcosJ1"]["Destructor6J1"]["vida"]=True
     nuevoJuego["BarcosJ1"]["Destructor6J1"]["orientacion"]=orientacion
-    ubicarCrucero1J1(co,fi)
     return True
 
 print(nuevoJuego.items())
