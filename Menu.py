@@ -2,6 +2,7 @@ from tkinter import *
 from tkinter import messagebox
 from tkinter import ttk
 import tkinter.font as tkFont
+import json
 
 nuevoJuego = {
         "Matriz": {"Columnas": None,"Filas": None, "matrizJ1": [], "matrizJ2": []},
@@ -62,6 +63,80 @@ style.configure('C.TButton', bd=1)
 fontStyle = tkFont.Font(family="Lucida Grande", size=40)
 matriz=[]
 
+def datosPartida():
+    global nuevoJuego
+
+    ventana=Toplevel()
+    ventana.title("Datos de partida")
+    ventana.geometry("410x250+380+280")
+
+    partidaLabel= Label(ventana, text="Inserte el nombre de la partida:")
+    partidaLabel.place(x=1,y=1)
+    nombrePartidaE= Entry(ventana)
+    nombrePartidaE.place(x=270,y=1)
+    nuevoJuego["NombrePartida"]=nombrePartidaE.get()
+
+    jugador1Label= Label(ventana, text="Inserte el nombre del primer jugador:")
+    jugador1Label.place(x=1,y=30)
+    nombreJugador1E= Entry(ventana)
+    nombreJugador1E.place(x=270,y=30)
+    nuevoJuego["Jugador 1"]["Nombre"]=nombreJugador1E.get()
+
+    nickname1Label= Label(ventana, text="Inserte el nombre del primer jugador:")
+    nickname1Label.place(x=1,y=60)
+    nickName1E= Entry(ventana)
+    nickName1E.place(x=270,y=60)
+    nuevoJuego["Jugador 1"]["Nickname"]=nickName1E.get()    
+
+    jugador2Label= Label(ventana, text="Inserte el nombre del segundo jugador:")
+    jugador2Label.place(x=1,y=90)
+    nombreJugador2E= Entry(ventana)
+    nombreJugador2E.place(x=270,y=90)
+    nuevoJuego["Jugador 2"]["Nombre"]=nombreJugador2E.get() 
+
+    nickname2Label= Label(ventana, text="Inserte el nombre del segundo jugador:")
+    nickname2Label.place(x=1,y=120)
+    nickName2E= Entry(ventana)
+    nickName2E.place(x=270,y=120)
+    nuevoJuego["Jugador 2"]["Nickname"]=nickName2E.get()    
+
+    columnaLabel= Label(ventana, text="Columnas:")
+    columnaLabel.place(x=1,y=150)
+    seleccionColumnaE= Spinbox(ventana, from_=20, to=40, increment=2)
+    seleccionColumnaE.place(x=270,y=150)
+    nuevoJuego["Matriz"]["Columnas"]=seleccionColumnaE.get()
+
+    filaLabel= Label(ventana, text="Fila:")
+    filaLabel.place(x=1,y=180)
+    seleccionFilaE= Spinbox(ventana, from_=10, to=40)
+    seleccionFilaE.place(x=270, y=180)
+    nuevoJuego["Matriz"]["Filas"]=seleccionFilaE.get()
+
+def cargarPartidas():
+    listaPartidas=[]
+    with open("partidas.json", "r") as archivoJson:
+        partidasGuardadas = json.load(archivoJson)
+
+    for p in partidasGuardadas.keys():
+        listaPartidas.append(p)
+
+    ventana= Toplevel()
+    ventana.title("Partidas guardadas")
+    ventana.geometry("300x100+380+280")
+    letrero= Label(ventana, text="Seleccione la partida que desees jugar:")
+    letrero.place(x=1, y=1)
+    seleccionPartida= ttk.Combobox(ventana, values=listaPartidas)
+    seleccionPartida.place(x=50, y=30)
+    botonGuardar=Button(ventana, text="Seleccionar",command= ventana.destroy())
+    botonGuardar.place(x=220, y=70)
+
+def borrarPartidas():
+    with open("partidas.json", "r") as archivoJson:
+        partidasGuardadas = json.load(archivoJson)
+    partidasGuardadas.clear()
+    with open("partidas.json", "w") as archivoJson:
+        json.dump(partidasGuardadas, archivoJson, indent=4)
+
 menu.attributes('-fullscreen', True)
 menu.configure(bg="Yellow")
 menu.title("Battleship")
@@ -69,13 +144,13 @@ menu.title("Battleship")
 titulo= Label(menu, text="Battleship", font=fontStyle)
 titulo.place(x=660,y=1)
 
-boton1=ttk.Button(menu, text= "Crear partida", command="funcion", style='C.TButton')
+boton1=ttk.Button(menu, text= "Crear partida", command=datosPartida(), style='C.TButton')
 boton1.place(x=80 , y=220, width=200, height=130)
 
-boton2=ttk.Button(menu, text= "Cargar partida", command="funcion", style='C.TButton')
+boton2=ttk.Button(menu, text= "Cargar partida", command=cargarPartidas(), style='C.TButton')
 boton2.place(x=80 , y=430, width=200, height=130)
 
-boton2=ttk.Button(menu, text= "Borrar partidas", command="funcion", style='C.TButton')
+boton2=ttk.Button(menu, text= "Borrar partidas", command=borrarPartidas(), style='C.TButton')
 boton2.place(x=80 , y=640, width=200, height=130)
 
 boton4=ttk.Button(menu, text="Salir", command=menu.destroy, style='C.TButton')
