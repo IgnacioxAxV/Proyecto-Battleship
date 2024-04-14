@@ -112,6 +112,11 @@ def datosPartida():
     seleccionFilaE.place(x=270, y=180)
     nuevoJuego["Matriz"]["Filas"]=seleccionFilaE.get()
 
+    botonEmpezar=Button(ventana, text="Empezar",command=lambda: mensaje() and generarMatriz( seleccionColumnaE.get(),seleccionFilaE.get()) and 
+                        ubicarDestructor1J1(seleccionColumnaE.get(), seleccionFilaE.get()) and 
+                        ventana.destroy())
+    botonEmpezar.place(x=310, y=210)
+
 def cargarPartidas():
     listaPartidas=[]
     with open("partidas.json", "r") as archivoJson:
@@ -233,3 +238,62 @@ def restaurarCursor(event):
 menu.bind("<Enter>", cambiarCursor)
 
 menu.bind("<Leave>", restaurarCursor)
+
+def ubicarDestructor1J1(x,y):
+    x=int(x)
+    y=int(y)
+    global matriz
+    tablero=Toplevel()
+    tablero.title("Tablero")
+    tablero.attributes("-fullscreen", True)
+
+    tableroLabel= Label(tablero, text="Inserte la ubicacion del barco:")
+    tableroLabel.place(x=1,y=10)
+
+    orientacion= IntVar()
+
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= "funcion")
+    botonGuardarPosicion.place(x=400, y=40)
+
+    orientacionLabel= Label(tablero, text="Orientacion del barco:")
+    orientacionLabel.place(x=500,y=40)
+
+    orientacionIzquierda=ttk.Radiobutton(tablero, text="Izquierda", value= 1, variable=orientacion)
+    orientacionIzquierda.place(x=600, y=60)
+    orientacionDerecha=ttk.Radiobutton(tablero, text="Derecha", value=2, variable=orientacion)
+    orientacionDerecha.place(x=700, y=60)
+    orientacioAbajo=ttk.Radiobutton(tablero, text="Abajo", value=3, variable=orientacion)
+    orientacioAbajo.place(x=800, y=60)
+    orientacionArriba=ttk.Radiobutton(tablero, text="Arriba", value=4, variable=orientacion)
+    orientacionArriba.place(x=900, y=60)
+
+    matriz=[[Button(tablero,bg="blue", command="funcion")
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatriz=10
+    posicionYmatriz=200
+    for fila_botones in matriz:
+        posicionXmatriz=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatriz,y=posicionYmatriz)
+            btn.configure(height=2, width=3)
+            posicionXmatriz+=32
+        posicionYmatriz+=35
+    
+    matrizReferencia=[[Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=posicionXmatriz+10
+    posicionYmatrizCopia=200
+
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=posicionXmatriz+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35 
+
+
+print(nuevoJuego.items())
+menu.mainloop()
