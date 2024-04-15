@@ -77,43 +77,36 @@ def datosPartida():
     partidaLabel.place(x=1,y=1)
     nombrePartidaE= Entry(ventana)
     nombrePartidaE.place(x=270,y=1)
-    nuevoJuego["NombrePartida"]=nombrePartidaE.get()
 
     jugador1Label= Label(ventana, text="Inserte el nombre del primer jugador:")
     jugador1Label.place(x=1,y=30)
     nombreJugador1E= Entry(ventana)
     nombreJugador1E.place(x=270,y=30)
-    nuevoJuego["Jugador 1"]["Nombre"]=nombreJugador1E.get()
 
     nickname1Label= Label(ventana, text="Inserte el nombre del primer jugador:")
     nickname1Label.place(x=1,y=60)
     nickName1E= Entry(ventana)
-    nickName1E.place(x=270,y=60)
-    nuevoJuego["Jugador 1"]["Nickname"]=nickName1E.get()    
+    nickName1E.place(x=270,y=60)  
 
     jugador2Label= Label(ventana, text="Inserte el nombre del segundo jugador:")
     jugador2Label.place(x=1,y=90)
     nombreJugador2E= Entry(ventana)
     nombreJugador2E.place(x=270,y=90)
-    nuevoJuego["Jugador 2"]["Nombre"]=nombreJugador2E.get() 
 
     nickname2Label= Label(ventana, text="Inserte el nombre del segundo jugador:")
     nickname2Label.place(x=1,y=120)
     nickName2E= Entry(ventana)
     nickName2E.place(x=270,y=120)
-    nuevoJuego["Jugador 2"]["Nickname"]=nickName2E.get()    
 
     columnaLabel= Label(ventana, text="Columnas:")
     columnaLabel.place(x=1,y=150)
     seleccionColumnaE= Spinbox(ventana, from_=20, to=40, increment=2)
     seleccionColumnaE.place(x=270,y=150)
-    nuevoJuego["Matriz"]["Columnas"]=seleccionColumnaE.get()
 
     filaLabel= Label(ventana, text="Fila:")
     filaLabel.place(x=1,y=180)
     seleccionFilaE= Spinbox(ventana, from_=10, to=40)
     seleccionFilaE.place(x=270, y=180)
-    nuevoJuego["Matriz"]["Filas"]=seleccionFilaE.get()
 
     botonEmpezar=Button(ventana, text="Empezar",command=lambda:validarDatos(nombrePartidaE.get(),nombreJugador1E.get(),nickName1E.get(),nombreJugador2E.get(),nickName2E.get(),seleccionFilaE.get(),seleccionColumnaE.get(), ventana)
                         and mensaje() and generarMatriz( seleccionColumnaE.get(),seleccionFilaE.get()) and 
@@ -169,12 +162,44 @@ def validarDatos(nombrePartida,nombreJugador1,nickname1,nombreJugador2,nickname2
         messagebox.showerror("Error", "El numero de columnas debe ser mayor o igual a 20, intenta de nuevo")
         ventana.destroy()
         return False    
+    actualizarDatos(nombrePartida,nombreJugador1,nickname1,nombreJugador2,nickname2,fila,columna)
     return True
+
+def actualizarDatos(nombrePartida,nombreJugador1,nickname1,nombreJugador2,nickname2,fila,columna):
+    global nuevoJuego
+    nuevoJuego["NombrePartida"]=nombrePartida
+    nuevoJuego["Jugador 1"]["Nombre"]=nombreJugador1
+    nuevoJuego["Jugador 1"]["Nickname"]=nickname1
+    nuevoJuego["Jugador 2"]["Nombre"]=nombreJugador2
+    nuevoJuego["Jugador 2"]["Nickname"]=nickname2
+    nuevoJuego["Matriz"]["Columnas"]=columna
+    nuevoJuego["Matriz"]["Filas"]=fila
+    print(nuevoJuego.items())
+    guardarDatos(nombrePartida)
+    return True
+
+def guardarDatos(nombrePartida):
+    global nuevoJuego
+    try:
+        with open("partidas.json", "r") as archivoJson:
+            datosExistentes = json.load(archivoJson)
+    except FileNotFoundError:
+        datosExistentes = {}
+
+    datosExistentes[nombrePartida] = nuevoJuego
+
+    with open("partidas.json", "w") as archivoJson:
+        json.dump(datosExistentes, archivoJson, indent=2)
 
 def cargarPartidas():
     listaPartidas=[]
-    with open("partidas.json", "r") as archivoJson:
-        partidasGuardadas = json.load(archivoJson)
+    try:
+        with open("partidas.json", "r") as archivoJson:
+            partidasGuardadas = json.load(archivoJson)
+    except FileNotFoundError:
+        with open("partidas.json", "w") as archivoJson:
+            json.dump({}, archivoJson)
+        partidasGuardadas = {}
 
     for p in partidasGuardadas.keys():
         listaPartidas.append(p)
@@ -186,7 +211,7 @@ def cargarPartidas():
     letrero.place(x=1, y=1)
     seleccionPartida= ttk.Combobox(ventana, values=listaPartidas)
     seleccionPartida.place(x=50, y=30)
-    botonGuardar=Button(ventana, text="Seleccionar",command= ventana.destroy())
+    botonGuardar=Button(ventana, text="Seleccionar",command= ventana.destroy)
     botonGuardar.place(x=220, y=70)
 
 def borrarPartidas():
@@ -241,7 +266,7 @@ menu.bind("<Enter>", cambiarCursor)
 menu.bind("<Leave>", restaurarCursor)
 
 def accion(x,y):
-    print (f"x={x},y={y}")
+    #print (f"x={x},y={y}")
     global resultadoX
     global resultadoY
     resultadoX=x
@@ -308,7 +333,7 @@ def guardarDestructor1J1(x,y,orientacion,co,fi):
     nuevoJuego["BarcosJ1"]["Destructor1J1"]["vida"]=True
     nuevoJuego["BarcosJ1"]["Destructor1J1"]["orientacion"]=orientacion
     ubicarDestructor2J1(co,fi)
-    print(nuevoJuego.items())
+    #print(nuevoJuego.items())
     return True
 
 def ubicarDestructor2J1(x,y):
@@ -373,7 +398,7 @@ def guardarDestructor2J1(x,y,orientacion,co,fi):
     nuevoJuego["BarcosJ1"]["Destructor2J1"]["vida"]=True
     nuevoJuego["BarcosJ1"]["Destructor2J1"]["orientacion"]=orientacion
     ubicarDestructor3J1(co,fi)
-    print(nuevoJuego.items())   
+    #print(nuevoJuego.items())   
     return True
 
 def ubicarDestructor3J1(x,y):
@@ -438,7 +463,7 @@ def guardarDestructor3J1(x,y,orientacion,co,fi):
     nuevoJuego["BarcosJ1"]["Destructor3J1"]["vida"]=True
     nuevoJuego["BarcosJ1"]["Destructor3J1"]["orientacion"]=orientacion
     ubicarDestructor4J1(co,fi)
-    print(nuevoJuego.items())
+    #print(nuevoJuego.items())
     return True
 
 def ubicarDestructor4J1(x,y):
@@ -2014,5 +2039,4 @@ def guardarAcorazado2J2(x,y,orientacion,co,fi):
     nuevoJuego["BarcosJ2"]["Acorazado2J2"]["orientacion"]=orientacion  
     return True
 
-print(nuevoJuego.items())
 menu.mainloop()
