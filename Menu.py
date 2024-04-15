@@ -115,10 +115,61 @@ def datosPartida():
     seleccionFilaE.place(x=270, y=180)
     nuevoJuego["Matriz"]["Filas"]=seleccionFilaE.get()
 
-    botonEmpezar=Button(ventana, text="Empezar",command=lambda: mensaje() and generarMatriz( seleccionColumnaE.get(),seleccionFilaE.get()) and 
-                        ubicarDestructor1J1(seleccionColumnaE.get(), seleccionFilaE.get()) and 
-                        ventana.destroy())
+    botonEmpezar=Button(ventana, text="Empezar",command=lambda:validarDatos(nombrePartidaE.get(),nombreJugador1E.get(),nickName1E.get(),nombreJugador2E.get(),nickName2E.get(),seleccionFilaE.get(),seleccionColumnaE.get(), ventana)
+                        and mensaje() and generarMatriz( seleccionColumnaE.get(),seleccionFilaE.get()) and 
+                        ubicarDestructor1J1(seleccionColumnaE.get(), seleccionFilaE.get()))
     botonEmpezar.place(x=310, y=210)
+
+def validarDatos(nombrePartida,nombreJugador1,nickname1,nombreJugador2,nickname2,fila,columna,ventana):
+    if len(nombrePartida)==0:
+        messagebox.showerror("Error", "Verifica que ningun campo este vacio, intenta de nuevo")
+        ventana.destroy()
+        return False
+    if len(nombreJugador1)==0:
+        messagebox.showerror("Error", "Verifica que ningun campo este vacio, intenta de nuevo")
+        ventana.destroy()
+        return False
+    if len(nickname1)==0:
+        messagebox.showerror("Error", "Verifica que ningun campo este vacio, intenta de nuevo")
+        ventana.destroy()
+        return False
+    if len(nombreJugador2)==0:
+        messagebox.showerror("Error", "Verifica que ningun campo este vacio, intenta de nuevo")
+        ventana.destroy()
+        return False 
+    if nombreJugador1==nombreJugador2:
+            messagebox.showerror("Error", "El nombre de los jugadores no puede ser igual")
+            ventana.destroy()
+            return False   
+    if len(nickname1)==0:
+        messagebox.showerror("Error", "Verifica que ningun campo este vacio, intenta de nuevo")
+        ventana.destroy()
+        return False
+    if len(nickname2)==0:
+        messagebox.showerror("Error", "Verifica que ningun campo este vacio, intenta de nuevo")
+        ventana.destroy()
+        return False
+    if nickname1==nickname2:
+            messagebox.showerror("Error", "El nickname de los jugadores no puede ser igual")
+            ventana.destroy()
+            return False
+    if not fila.isdigit():
+        messagebox.showerror("Error", "El numero de filas debe ser un numero, intenta de nuevo")
+        ventana.destroy()
+        return False    
+    if not columna.isdigit():
+        messagebox.showerror("Error", "El numero de columnas debe ser un numero, intenta de nuevo")
+        ventana.destroy()
+        return False  
+    if int(fila) < 10:
+        messagebox.showerror("Error", "El numero de filas debe ser mayor o igual a 10, intenta de nuevo")
+        ventana.destroy()
+        return False
+    if int(columna) < 20:    
+        messagebox.showerror("Error", "El numero de columnas debe ser mayor o igual a 20, intenta de nuevo")
+        ventana.destroy()
+        return False    
+    return True
 
 def cargarPartidas():
     listaPartidas=[]
@@ -168,7 +219,7 @@ punto= Label(menu, text="#")
 punto.place(x=1525 , y=850)
 
 def mensaje():
-    messagebox.showinfo("Battleship", "Ubique los barcos en el tablero.")
+    messagebox.showinfo("Battleship", "Tud datos han difo ingresados correctamente")
     return True 
 
 def generarMatriz(x,y):
