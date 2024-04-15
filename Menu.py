@@ -1230,7 +1230,7 @@ def ubicarAcorazado1J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarAcorazado1J1(x,y,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarAcorazado1J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1452,8 +1452,66 @@ def guardarAcorazado2J1(x,y,orientacion,co,fi):
 
     nuevoJuego["BarcosJ1"]["Acorazado2J1"]["vida"]=True
     nuevoJuego["BarcosJ1"]["Acorazado2J1"]["orientacion"]=orientacion
-    ubicarDestructor1J2(co,fi)  
+    pantallaBarcosJ1(co,fi)
     return True
+
+def pantallaBarcosJ1(x,y):
+    x=int(x)
+    y=int(y)
+    global matriz
+    tablero=tk.Toplevel()
+    tablero.title("Tablero")
+    tablero.attributes("-fullscreen", True)
+
+    tableroLabel= Label(tablero, text="Barcos del jugador 1")
+    tableroLabel.place(x=1,y=10)
+
+    botonGuardarPosicion=Button(tablero, text="Continuar",command= lambda:ubicarDestructor1J2(x,y) and tablero.destroy())
+    botonGuardarPosicion.place(x=400, y=40)
+
+    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+    global nuevoJuego
+    posicionXmatriz=10
+    posicionYmatriz=200
+    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
+        posicionXmatriz=10
+        for btn, num in zip(fila_botones,fila):
+            if num==0:
+                btn.place(x=posicionXmatriz,y=posicionYmatriz)
+                btn.configure(height=2, width=3)
+                btn.configure(bg="blue")
+                posicionXmatriz+=32
+            if num==1:
+                btn.place(x=posicionXmatriz,y=posicionYmatriz)
+                btn.configure(height=2, width=3)
+                btn.configure(bg="red")
+                posicionXmatriz+=32
+            if num==2:
+                btn.place(x=posicionXmatriz,y=posicionYmatriz)
+                btn.configure(height=2, width=3)
+                btn.configure(bg="green")
+                posicionXmatriz+=32
+            if num==3:
+                btn.place(x=posicionXmatriz,y=posicionYmatriz)
+                btn.configure(height=2, width=3)
+                btn.configure(bg="brown")
+                posicionXmatriz+=32
+        posicionYmatriz+=35
+    
+    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=posicionXmatriz+10
+    posicionYmatrizCopia=200
+
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=posicionXmatriz+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35 
 
 def ubicarDestructor1J2(x,y):
     x=int(x)
@@ -2406,7 +2464,7 @@ def ubicarAcorazado1J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarAcorazado1J2(x,y,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarAcorazado1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -2629,8 +2687,66 @@ def guardarAcorazado2J2(x,y,orientacion,co,fi):
         nuevoJuego["Matriz"]["matrizJ2"][y-2][x]=3
 
     nuevoJuego["BarcosJ2"]["Acorazado2J2"]["vida"]=True
-    nuevoJuego["BarcosJ2"]["Acorazado2J2"]["orientacion"]=orientacion  
+    nuevoJuego["BarcosJ2"]["Acorazado2J2"]["orientacion"]=orientacion 
+    pantallaBarcosJ2(co,fi)  
     return True
 
+def pantallaBarcosJ2(x,y):
+    x=int(x)
+    y=int(y)
+    global matriz
+    tablero=tk.Toplevel()
+    tablero.title("Tablero")
+    tablero.attributes("-fullscreen", True)
+
+    tableroLabel= Label(tablero, text="Barcos del jugador 2")
+    tableroLabel.place(x=1,y=10)
+
+    botonGuardarPosicion=Button(tablero, text="Continuar",command= lambda:"Funcion" and tablero.destroy())
+    botonGuardarPosicion.place(x=400, y=40)
+
+    matrizReferencia=[[tk.Button(tablero,bg="yellow") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=10
+    posicionYmatrizCopia=200
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia)
+            btn.configure(height=2, width=3)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=35
+    
+    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
+            for co in range(x//2)] for fi in range(y)]
+    global nuevoJuego
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn, num in zip(fila_botones,fila):
+            if num==0:
+                btn.place(x=posicionXmatriz,y=posicionYmatriz)
+                btn.configure(height=2, width=3)
+                btn.configure(bg="blue")
+                posicionXmatriz+=32
+            if num==1:
+                btn.place(x=posicionXmatriz,y=posicionYmatriz)
+                btn.configure(height=2, width=3)
+                btn.configure(bg="red")
+                posicionXmatriz+=32
+            if num==2:
+                btn.place(x=posicionXmatriz,y=posicionYmatriz)
+                btn.configure(height=2, width=3)
+                btn.configure(bg="green")
+                posicionXmatriz+=32
+            if num==3:
+                btn.place(x=posicionXmatriz,y=posicionYmatriz)
+                btn.configure(height=2, width=3)
+                btn.configure(bg="brown")
+                posicionXmatriz+=32
+        posicionYmatriz+=35
 
 menu.mainloop()
