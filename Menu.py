@@ -175,7 +175,6 @@ def actualizarDatos(nombrePartida,nombreJugador1,nickname1,nombreJugador2,nickna
     nuevoJuego["Jugador 2"]["Nickname"]=nickname2
     nuevoJuego["Matriz"]["Columnas"]=columna
     nuevoJuego["Matriz"]["Filas"]=fila
-    print(nuevoJuego.items())
     guardarDatos(nombrePartida)
     return True
 
@@ -245,7 +244,7 @@ punto= Label(menu, text="#")
 punto.place(x=1525 , y=850)
 
 def mensaje():
-    messagebox.showinfo("Battleship", "Tud datos han difo ingresados correctamente")
+    messagebox.showinfo("Battleship", "Tus datos han sido ingresados correctamente")
     return True 
 
 def generarMatriz(x,y):
@@ -254,7 +253,6 @@ def generarMatriz(x,y):
     global nuevoJuego
     nuevoJuego["Matriz"]["matrizJ1"]=[[0 for c in range(x//2)] for f in range(y)]
     nuevoJuego["Matriz"]["matrizJ2"]=[[0 for c in range(x//2)] for f in range(y)]
-    print(nuevoJuego.items()) 
     return True
 
 def cambiarCursor(event):
@@ -342,7 +340,7 @@ def ubicarDestructor1J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor1J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionDestructorJ1(resultadoX,resultadoY,orientacion.get()) and guardarDestructor1J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -421,7 +419,7 @@ def ubicarDestructor2J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor2J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:  validarUbicacionDestructorJ1(resultadoX,resultadoY,orientacion.get()) and guardarDestructor2J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -501,7 +499,7 @@ def ubicarDestructor3J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarDestructor3J1(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionDestructorJ1(resultadoX,resultadoY,orientacion.get()) and guardarDestructor3J1(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -580,7 +578,7 @@ def ubicarDestructor4J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor4J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:  validarUbicacionDestructorJ1(resultadoX,resultadoY,orientacion.get()) and guardarDestructor4J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -658,7 +656,7 @@ def ubicarDestructor5J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarDestructor5J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:  validarUbicacionDestructorJ1(resultadoX,resultadoY,orientacion.get()) and guardarDestructor5J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -736,7 +734,7 @@ def ubicarDestructor6J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor6J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:  validarUbicacionDestructorJ1(resultadoX,resultadoY,orientacion.get()) and guardarDestructor6J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -814,7 +812,7 @@ def ubicarCrucero1J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarCrucero1J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionCruceroJ1(resultadoX,resultadoY,orientacion.get(),x,y) and guardarCrucero1J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -905,7 +903,7 @@ def ubicarCrucero2J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command=lambda: guardarCrucero2J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command=lambda: validarUbicacionCruceroJ1(resultadoX,resultadoY,orientacion.get(),x,y) and guardarCrucero2J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -996,7 +994,7 @@ def ubicarCrucero3J1(x,y):
     
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarCrucero3J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionCruceroJ1(resultadoX,resultadoY,orientacion.get(),x,y) and guardarCrucero3J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1087,7 +1085,7 @@ def ubicarCrucero4J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarCrucero4J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionCruceroJ1(resultadoX,resultadoY,orientacion.get(),x,y) and guardarCrucero4J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1177,7 +1175,7 @@ def ubicarAcorazado1J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarAcorazado1J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionAcorazadoJ1(resultadoX,resultadoY,orientacion.get(),x,y) and guardarAcorazado1J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1279,7 +1277,7 @@ def ubicarAcorazado2J1(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarAcorazado2J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionAcorazadoJ1(resultadoX,resultadoY,orientacion.get(),x,y) and guardarAcorazado2J1(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1409,6 +1407,7 @@ def pantallaBarcosJ1(x,y):
             btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
             posicionXmatrizCopia+=32
         posicionYmatrizCopia+=36
+    print(nuevoJuego["BarcosJ1"])
 
 
 
@@ -1426,7 +1425,7 @@ def ubicarDestructor1J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionIzquierda=ttk.Radiobutton(tablero, text="Derecha", value= 1, variable=orientacion)
@@ -1463,6 +1462,7 @@ def ubicarDestructor1J2(x,y):
             btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
             posicionXmatriz+=32
         posicionYmatriz+=36
+    return True
 
 def guardarDestructor1J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1499,7 +1499,7 @@ def ubicarDestructor2J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor2J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor2J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1575,7 +1575,7 @@ def ubicarDestructor3J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarDestructor3J2(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor3J2(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1651,7 +1651,7 @@ def ubicarDestructor4J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor4J2(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor4J2(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1727,7 +1727,7 @@ def ubicarDestructor5J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarDestructor5J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor5J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1803,7 +1803,7 @@ def ubicarDestructor6J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarDestructor6J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor6J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1879,7 +1879,7 @@ def ubicarCrucero1J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarCrucero1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionCruceroJ2(resultadoX,resultadoY,orientacion.get(),x,y) and guardarCrucero1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1968,7 +1968,7 @@ def ubicarCrucero2J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command=lambda: guardarCrucero2J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command=lambda: validarUbicacionCruceroJ2(resultadoX,resultadoY,orientacion.get(),x,y) and guardarCrucero2J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -2056,7 +2056,7 @@ def ubicarCrucero3J2(x,y):
     
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarCrucero3J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionCruceroJ2(resultadoX,resultadoY,orientacion.get(),x,y) and guardarCrucero3J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -2144,7 +2144,7 @@ def ubicarCrucero4J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarCrucero4J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionCruceroJ2(resultadoX,resultadoY,orientacion.get(),x,y) and guardarCrucero4J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -2233,7 +2233,7 @@ def ubicarAcorazado1J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: guardarAcorazado1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get(),x,y) and guardarAcorazado1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -2333,7 +2333,7 @@ def ubicarAcorazado2J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:guardarAcorazado2J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionAcorazadoJ1(resultadoX,resultadoY,orientacion.get(),x,y) and guardarAcorazado2J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -2556,8 +2556,154 @@ imagen23 = ImageTk.PhotoImage(imagen23)
 imagen24 = imagenAcorazado3.rotate(270)                 #Abajo
 imagen24 = ImageTk.PhotoImage(imagen24)
 
+def validarUbicacionDestructorJ1(x,y,orientacion):
+    global nuevoJuego
+    if orientacion==1:
+        if nuevoJuego["Matriz"]["matrizJ1"][y][x]!=0:
+            return False
+        else:
+            return True
 
+    elif orientacion==2:
+        if nuevoJuego["Matriz"]["matrizJ1"][y][x]!=0:
+            return False
+        else:
+            return True
 
+    elif orientacion==3:
+        if nuevoJuego["Matriz"]["matrizJ1"][y][x] !=0:
+            return False
+        else:
+            return True
+    
+    elif orientacion==4:
+        if nuevoJuego["Matriz"]["matrizJ1"][y][x] !=0:
+            return False
+        else:
+            return True
 
-menu.mainloop()
+def validarUbicacionCruceroJ1(x, y, orientacion, filas, columnas):
+    global nuevoJuego
+    if orientacion == 1:
+        if x < 1 or nuevoJuego["Matriz"]["matrizJ1"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y][x-1] != 0:
+            return False
+        else:
+            return True
+    elif orientacion == 2:
+        if y > filas - 2 or nuevoJuego["Matriz"]["matrizJ1"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y+1][x] != 0:
+            return False
+        else:
+            return True
+    elif orientacion == 3:
+        if x > columnas - 2 or nuevoJuego["Matriz"]["matrizJ1"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y][x+1] != 0:
+            return False
+        else:
+            return True
+    elif orientacion == 4:
+        if y < 1 or nuevoJuego["Matriz"]["matrizJ1"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y-1][x] != 0:
+            return False
+        else:
+            return True
+       
+def validarUbicacionAcorazadoJ1(x, y, orientacion, filas, columnas):
+    global nuevoJuego
+    if orientacion == 1:
+        if x < 2 or nuevoJuego["Matriz"]["matrizJ1"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y][x-1] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y][x-2] != 0:
+            return False
+        else:
+            return True
+    elif orientacion == 2:
+        if y > filas - 3 or nuevoJuego["Matriz"]["matrizJ1"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y+1][x] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y+2][x] != 0:
+            return False
+        else:
+            return True
+    elif orientacion == 3:
+        if x > columnas - 3 or nuevoJuego["Matriz"]["matrizJ1"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y][x+1] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y][x+2] != 0:
+            return False
+        else:
+            return True
+    elif orientacion == 4:
+        if y < 2 or nuevoJuego["Matriz"]["matrizJ1"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y-1][x] != 0 or nuevoJuego["Matriz"]["matrizJ1"][y-2][x] != 0:
+            return False
+        else:
+            return True
+        
+def validarUbicacionDestructorJ2(x,y,orientacion):
+    global nuevoJuego
+    if orientacion==1:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x]!=0:
+            return False
+        else:
+            return True
+
+    elif orientacion==2:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x]!=0:
+            return False
+        else:
+            return True
+
+    elif orientacion==3:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x] !=0:
+            return False
+        else:
+            return True
+    
+    elif orientacion==4:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x] !=0:
+            return False
+        else:
+            return True
+    
+def validarUbicacionCruceroJ2(x,y,orientacion):
+    global nuevoJuego
+    if orientacion==1:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x-1]!=0:
+            return False
+        else:
+            return True
+
+    elif orientacion==2:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y+1][x]!=0:
+            return False
+        else:
+            return True
+
+    elif orientacion==3:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x] !=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x+1]!=0:
+            return False
+        else:
+            return True
+    
+    elif orientacion==4:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x] !=0 or nuevoJuego["Matriz"]["matrizJ2"][y-1][x]!=0:
+            return False
+        else:
+            return True
+
+def validarUbicacionAcorazadoJ2(x,y,orientacion):
+    global nuevoJuego
+    if orientacion==1:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x-1]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x-2]!=0:
+            return False
+        else:
+            return True
+
+    elif orientacion==2:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y+1][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y+2][x]!=0:
+            return False
+        else:
+            return True
+
+    elif orientacion==3:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x] !=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x+1]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x+2]!=0:
+            return False
+        else:
+            return True
+    
+    elif orientacion==4:
+        if nuevoJuego["Matriz"]["matrizJ2"][y][x] !=0 or nuevoJuego["Matriz"]["matrizJ2"][y-1][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y-2][x]!=0:
+            return False
+        else:
+            return True
+        
 menu.mainloop()

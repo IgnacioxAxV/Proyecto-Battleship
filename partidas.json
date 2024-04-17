@@ -1,20 +1,20 @@
 {
-    "w2tbw": {
+    "fqf": {
         "Matriz": {
             "Columnas": "20",
             "Filas": "10",
             "matrizJ1": [],
             "matrizJ2": []
         },
-        "NombrePartida": "w2tbw",
+        "NombrePartida": "fqf",
         "Jugador 1": {
-            "Nombre": "twbtwt",
-            "Nickname": "rywbaan",
+            "Nombre": "qef",
+            "Nickname": "fq",
             "Puntaje": 0
         },
         "Jugador 2": {
-            "Nombre": "yrwnsy",
-            "Nickname": "rybzby",
+            "Nombre": "qf",
+            "Nickname": "qf",
             "Puntaje": 0
         },
         "BarcosJ1": {
@@ -198,22 +198,221 @@
             }
         }
     },
-    "Partiaqf2ef": {
+    "qef": {
         "Matriz": {
-            "Columnas": "24",
-            "Filas": "13",
+            "Columnas": "20",
+            "Filas": "10",
             "matrizJ1": [],
             "matrizJ2": []
         },
-        "NombrePartida": "Partiaqf2ef",
+        "NombrePartida": "qef",
         "Jugador 1": {
-            "Nombre": "2ef2f",
-            "Nickname": "2eef22ef",
+            "Nombre": "qf",
+            "Nickname": "eqf",
             "Puntaje": 0
         },
         "Jugador 2": {
-            "Nombre": "f2ef",
-            "Nickname": "2ef2f",
+            "Nombre": "fq",
+            "Nickname": "qeq",
+            "Puntaje": 0
+        },
+        "BarcosJ1": {
+            "Destructor1J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Destructor2J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Destructor3J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Destructor4J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Destructor5J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Destructor6J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Crucero1J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "orientacion": null
+            },
+            "Crucero2J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "orientacion": null
+            },
+            "Crucero3J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "orientacion": null
+            },
+            "Crucero4J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "orientacion": null
+            },
+            "Acorazado1J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "x3": null,
+                "y3": null,
+                "orientacion": null
+            },
+            "Acorazado2J1": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "x3": null,
+                "y3": null,
+                "orientacion": null
+            }
+        },
+        "BarcosJ2": {
+            "Destructor1J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Destructor2J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Destructor3J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Destructor4J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Destructor5J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Destructor6J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "orientacion": null
+            },
+            "Crucero1J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "orientacion": null
+            },
+            "Crucero2J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "orientacion": null
+            },
+            "Crucero3J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "orientacion": null
+            },
+            "Crucero4J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "orientacion": null
+            },
+            "Acorazado1J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "x3": null,
+                "y3": null,
+                "orientacion": null
+            },
+            "Acorazado2J2": {
+                "vida": true,
+                "x1": null,
+                "y1": null,
+                "x2": null,
+                "y2": null,
+                "x3": null,
+                "y3": null,
+                "orientacion": null
+            }
+        }
+    },
+    "qrg": {
+        "Matriz": {
+            "Columnas": "20",
+            "Filas": "10",
+            "matrizJ1": [],
+            "matrizJ2": []
+        },
+        "NombrePartida": "qrg",
+        "Jugador 1": {
+            "Nombre": "frqe",
+            "Nickname": "vfeq",
+            "Puntaje": 0
+        },
+        "Jugador 2": {
+            "Nombre": "LQEF",
+            "Nickname": "AWERV",
             "Puntaje": 0
         },
         "BarcosJ1": {
