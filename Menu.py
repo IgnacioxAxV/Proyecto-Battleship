@@ -326,6 +326,61 @@ def configurarBoton(btn, num):
         btn.configure(image=imagen24)
 
 
+def imprimirMatrizJ1(x,y,tablero):
+    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
+            for c in range(x//2)] for f in range(y)]
+    global nuevoJuego
+    posicionXmatriz=10
+    posicionYmatriz=200
+    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
+        posicionXmatriz=10
+        for btn, num in zip(fila_botones,fila):
+            configurarBoton(btn, num)
+            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
+            posicionXmatriz+=32
+            
+        posicionYmatriz+=36
+
+    
+    matrizReferencia=[[Button(tablero,bg="gray") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=posicionXmatriz+10
+    posicionYmatrizCopia=200
+
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=posicionXmatriz+10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=36
+
+def imprimirMatrizJ2(x,y,tablero):
+    matrizReferencia=[[Button(tablero,bg="gray") 
+            for c in range(x//2)] for f in range(y)]
+    
+    posicionXmatrizCopia=10
+    posicionYmatrizCopia=200
+    for fila_botones in matrizReferencia:
+        posicionXmatrizCopia=10
+        for btn in fila_botones:
+            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
+            posicionXmatrizCopia+=32
+        posicionYmatrizCopia+=36
+
+    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
+            for co in range(x//2)] for fi in range(y)]
+    global nuevoJuego
+
+    posicionXmatriz=posicionXmatrizCopia+10
+    posicionYmatriz=200
+    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
+        posicionXmatriz=posicionXmatrizCopia+10
+        for btn, num in zip(fila_botones,fila):
+            configurarBoton(btn, num)
+            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
+            posicionXmatriz+=32
+        posicionYmatriz+=36
 
 def ubicarDestructor1J1(x,y):
     x=int(x)
@@ -354,34 +409,8 @@ def ubicarDestructor1J1(x,y):
     orientacioAbajo.place(x=700, y=60)
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
-
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
     
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36 
+    imprimirMatrizJ1(x,y,tablero) 
 
 def guardarDestructor1J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -434,33 +463,7 @@ def ubicarDestructor2J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36 
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarDestructor2J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -514,33 +517,7 @@ def ubicarDestructor3J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36 
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarDestructor3J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -593,33 +570,7 @@ def ubicarDestructor4J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36 
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarDestructor4J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -671,33 +622,7 @@ def ubicarDestructor5J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36 
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarDestructor5J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -749,33 +674,7 @@ def ubicarDestructor6J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36 
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarDestructor6J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -842,18 +741,7 @@ def ubicarCrucero1J1(x,y):
         posicionYmatriz+=36
 
     
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarCrucero1J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -918,33 +806,7 @@ def ubicarCrucero2J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarCrucero2J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1009,33 +871,7 @@ def ubicarCrucero3J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarCrucero3J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1100,33 +936,7 @@ def ubicarCrucero4J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarCrucero4J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1190,33 +1000,7 @@ def ubicarAcorazado1J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarAcorazado1J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1292,33 +1076,7 @@ def ubicarAcorazado2J1(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
+    imprimirMatrizJ1(x,y,tablero)
 
 def guardarAcorazado2J1(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1380,33 +1138,7 @@ def pantallaBarcosJ1(x,y):
     botonGuardarPosicion=Button(tablero, text="Continuar",command= lambda:ubicarDestructor1J2(x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
-    matrizBotonesJ1=[[Button(tablero, command=lambda x=c,y=f:accion(x,y)) 
-            for c in range(x//2)] for f in range(y)]
-    global nuevoJuego
-    posicionXmatriz=10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ1, nuevoJuego["Matriz"]["matrizJ1"]):
-        posicionXmatriz=10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-            
-        posicionYmatriz+=36
-
-    
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=posicionXmatriz+10
-    posicionYmatrizCopia=200
-
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=posicionXmatriz+10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
+    imprimirMatrizJ1(x,y,tablero)
     print(nuevoJuego["BarcosJ1"])
 
 
@@ -1425,7 +1157,7 @@ def ubicarDestructor1J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionDestructorJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor1J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionIzquierda=ttk.Radiobutton(tablero, text="Derecha", value= 1, variable=orientacion)
@@ -1437,31 +1169,8 @@ def ubicarDestructor1J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
     
-    matrizReferencia=[[Button(tablero,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
+    imprimirMatrizJ2(x,y,tablero)
 
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
     return True
 
 def guardarDestructor1J2(x,y,orientacion,co,fi):
@@ -1499,7 +1208,7 @@ def ubicarDestructor2J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor2J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionDestructorJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor2J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1514,31 +1223,7 @@ def ubicarDestructor2J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarDestructor2J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1575,7 +1260,7 @@ def ubicarDestructor3J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor3J2(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionDestructorJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor3J2(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1590,31 +1275,7 @@ def ubicarDestructor3J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarDestructor3J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1651,7 +1312,7 @@ def ubicarDestructor4J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor4J2(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionDestructorJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor4J2(resultadoX,resultadoY,orientacion.get(),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1666,31 +1327,7 @@ def ubicarDestructor4J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarDestructor4J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1727,7 +1364,7 @@ def ubicarDestructor5J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor5J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda:validarUbicacionDestructorJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor5J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1742,31 +1379,7 @@ def ubicarDestructor5J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarDestructor5J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1803,7 +1416,7 @@ def ubicarDestructor6J2(x,y):
 
     orientacion= tk.IntVar()
 
-    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionAcorazadoJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor6J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
+    botonGuardarPosicion=Button(tablero, text="Guardar",command= lambda: validarUbicacionDestructorJ2(resultadoX,resultadoY,orientacion.get()) and guardarDestructor6J2(resultadoX,resultadoY,orientacion.get (),x,y) and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
     orientacionLabel= Label(tablero, text="Orientacion del barco:")
@@ -1818,31 +1431,7 @@ def ubicarDestructor6J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarDestructor6J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1894,31 +1483,7 @@ def ubicarCrucero1J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
     
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarCrucero1J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -1983,31 +1548,7 @@ def ubicarCrucero2J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarCrucero2J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -2071,31 +1612,7 @@ def ubicarCrucero3J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarCrucero3J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -2159,31 +1676,7 @@ def ubicarCrucero4J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarCrucero4J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -2248,31 +1741,7 @@ def ubicarAcorazado1J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarAcorazado1J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -2348,31 +1817,7 @@ def ubicarAcorazado2J2(x,y):
     orientacionArriba=ttk.Radiobutton(tablero, text="Abajo", value=4, variable=orientacion)
     orientacionArriba.place(x=900, y=60)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
-
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
+    imprimirMatrizJ2(x,y,tablero)
 
 def guardarAcorazado2J2(x,y,orientacion,co,fi):
     global nuevoJuego
@@ -2434,32 +1879,9 @@ def pantallaBarcosJ2(x,y):
     botonGuardarPosicion=Button(tablero, text="Continuar",command= lambda:"Funcion" and tablero.destroy())
     botonGuardarPosicion.place(x=400, y=40)
 
-    matrizReferencia=[[Button(tablero, command=None,bg="gray") 
-            for c in range(x//2)] for f in range(y)]
-    
-    posicionXmatrizCopia=10
-    posicionYmatrizCopia=200
-    for fila_botones in matrizReferencia:
-        posicionXmatrizCopia=10
-        for btn in fila_botones:
-            btn.place(x=posicionXmatrizCopia,y=posicionYmatrizCopia,height=30,width=30)
-            posicionXmatrizCopia+=32
-        posicionYmatrizCopia+=36
+    imprimirMatrizJ2(x,y,tablero)
 
-    matrizBotonesJ2=[[Button(tablero, command=lambda x=co,y=fi:accion(x,y)) 
-            for co in range(x//2)] for fi in range(y)]
-    global nuevoJuego
-
-    posicionXmatriz=posicionXmatrizCopia+10
-    posicionYmatriz=200
-    for fila_botones,fila in zip(matrizBotonesJ2, nuevoJuego["Matriz"]["matrizJ2"]):
-        posicionXmatriz=posicionXmatrizCopia+10
-        for btn, num in zip(fila_botones,fila):
-            configurarBoton(btn, num)
-            btn.place(x=posicionXmatriz,y=posicionYmatriz,height=30,width=30)
-            posicionXmatriz+=32
-        posicionYmatriz+=36
-
+    print(nuevoJuego["BarcosJ2"])
 #Destructor
 imagenDestructor = Image.open("b1.png")                 #Esto, todo el destructor                       
 imagenDestructor = imagenDestructor.resize((40, 40))    #Revisar el tamañqo de la imagen
@@ -2654,54 +2076,48 @@ def validarUbicacionDestructorJ2(x,y,orientacion):
         else:
             return True
     
-def validarUbicacionCruceroJ2(x,y,orientacion):
+def validarUbicacionCruceroJ2(x,y,orientacion, fila, columnas):
     global nuevoJuego
-    if orientacion==1:
-        if nuevoJuego["Matriz"]["matrizJ2"][y][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x-1]!=0:
+    if orientacion == 1:
+        if x < 1 or nuevoJuego["Matriz"]["matrizJ2"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y][x-1] != 0:
+            return False
+        else:
+            return True
+    elif orientacion == 2:
+        if y > fila - 2 or nuevoJuego["Matriz"]["matrizJ2"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y+1][x] != 0:
+            return False
+        else:
+            return True
+    elif orientacion == 3:
+        if x > columnas - 2 or nuevoJuego["Matriz"]["matrizJ2"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y][x+1] != 0:
+            return False
+        else:
+            return True
+    elif orientacion == 4:
+        if y < 1 or nuevoJuego["Matriz"]["matrizJ2"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y-1][x] != 0:
             return False
         else:
             return True
 
-    elif orientacion==2:
-        if nuevoJuego["Matriz"]["matrizJ2"][y][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y+1][x]!=0:
-            return False
-        else:
-            return True
-
-    elif orientacion==3:
-        if nuevoJuego["Matriz"]["matrizJ2"][y][x] !=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x+1]!=0:
-            return False
-        else:
-            return True
-    
-    elif orientacion==4:
-        if nuevoJuego["Matriz"]["matrizJ2"][y][x] !=0 or nuevoJuego["Matriz"]["matrizJ2"][y-1][x]!=0:
-            return False
-        else:
-            return True
-
-def validarUbicacionAcorazadoJ2(x,y,orientacion):
+def validarUbicacionAcorazadoJ2(x,y,orientacion, fila, columna):
     global nuevoJuego
-    if orientacion==1:
-        if nuevoJuego["Matriz"]["matrizJ2"][y][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x-1]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x-2]!=0:
+    if orientacion == 1:
+        if x < 2 or nuevoJuego["Matriz"]["matrizJ2"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y][x-1] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y][x-2] != 0:
             return False
         else:
             return True
-
-    elif orientacion==2:
-        if nuevoJuego["Matriz"]["matrizJ2"][y][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y+1][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y+2][x]!=0:
+    elif orientacion == 2:
+        if y > fila - 3 or nuevoJuego["Matriz"]["matrizJ2"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y+1][x] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y+2][x] != 0:
             return False
         else:
             return True
-
-    elif orientacion==3:
-        if nuevoJuego["Matriz"]["matrizJ2"][y][x] !=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x+1]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y][x+2]!=0:
+    elif orientacion == 3:
+        if x > columna - 3 or nuevoJuego["Matriz"]["matrizJ2"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y][x+1] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y][x+2] != 0:
             return False
         else:
             return True
-    
-    elif orientacion==4:
-        if nuevoJuego["Matriz"]["matrizJ2"][y][x] !=0 or nuevoJuego["Matriz"]["matrizJ2"][y-1][x]!=0 or nuevoJuego["Matriz"]["matrizJ2"][y-2][x]!=0:
+    elif orientacion == 4:
+        if y < 2 or nuevoJuego["Matriz"]["matrizJ2"][y][x] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y-1][x] != 0 or nuevoJuego["Matriz"]["matrizJ2"][y-2][x] != 0:
             return False
         else:
             return True
