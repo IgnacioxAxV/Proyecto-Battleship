@@ -175,7 +175,6 @@ def actualizarDatos(nombrePartida,nombreJugador1,nickname1,nombreJugador2,nickna
     nuevoJuego["Jugador 2"]["Nickname"]=nickname2
     nuevoJuego["Matriz"]["Columnas"]=columna
     nuevoJuego["Matriz"]["Filas"]=fila
-    guardarDatos(nombrePartida)
     return True
 
 def guardarDatos(nombrePartida):
