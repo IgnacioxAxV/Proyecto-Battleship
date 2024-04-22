@@ -214,6 +214,10 @@ def validarDatos(nombrePartida,nombreJugador1,nickname1,nombreJugador2,nickname2
         messagebox.showerror("Error", "El numero de columnas debe ser mayor o igual a 20, intenta de nuevo")
         ventana.destroy()
         return False    
+    if int(columna) % 2 != 0:
+        messagebox.showerror("Error", "El numero de columnas debe ser par, intenta de nuevo")
+        ventana.destroy()
+        return False
     actualizarDatos(nombrePartida,nombreJugador1,nickname1,nombreJugador2,nickname2,fila,columna)
     return True
 
